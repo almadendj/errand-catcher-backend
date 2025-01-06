@@ -1,4 +1,4 @@
-import mysql from "mysql";
+const mysql = require('mysql');
 
 const createDBConnection = () => {
   const dbConfig = {
@@ -21,4 +21,4 @@ const createDBConnection = () => {
   return connection;
 };
 
-export default createDBConnection;
+module.exports = createDBConnection;
