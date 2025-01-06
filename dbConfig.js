@@ -1,10 +1,13 @@
 const mysql = require('mysql');
 
+const dbUrl = process.env.JAWSDB_URL || "mysql://root:sethnl99@localhost/errandcatcher";
+const url = new URL(dbUrl);
+
 const dbConfig = {
-  host: process.env.DB_HOST || "localhost",
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "sethnl99",
-  database: process.env.DB_NAME || "errandcatcher",
+  host: url.hostname,
+  user: url.username,
+  password: url.password,
+  database: url.pathname.replace('/', ''),
 };
 
 const connection = mysql.createConnection(dbConfig);
