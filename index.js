@@ -241,7 +241,7 @@ app.get("/search-user", (req, res) => {
   const status = req.query.status || "";
 
   const q =
-    "SELECT * FROM UserAccount WHERE username LIKE ?  AND accountType = ? AND accountStatus = ?";
+    "SELECT * FROM useraccount WHERE username LIKE ?  AND accountType = ? AND accountStatus = ?";
   const values = [
     `%${searchTerm}%`,
     `%${searchTerm}%`,
@@ -343,7 +343,7 @@ app.get("/filter-type", (req, res) => {
 
   // const searchTerm = req.query.term;
   const q =
-    "SELECT * FROM UserAccount WHERE accountType = ? AND accountStatus = ?";
+    "SELECT * FROM useraccount WHERE accountType = ? AND accountStatus = ?";
   const values = [type, status];
 
   db.query(q, values, (err, data) => {
@@ -362,7 +362,7 @@ app.get("/filter-type", (req, res) => {
 //TRANSFERRED
 app.post("/signup", (req, res) => {
   const q =
-    "INSERT INTO UserAccount (`username`, `password`,`userFirstname`, `userLastname`, `userBirthday`,  `userGender`, `userEmail`,`userContactNum`, `accountType`, `dateCreated` ) VALUES (?)";
+    "INSERT INTO useraccount (`username`, `password`,`userFirstname`, `userLastname`, `userBirthday`,  `userGender`, `userEmail`,`userContactNum`, `accountType`, `dateCreated` ) VALUES (?)";
   // `userAge`
   const values = [
     req.body.regUsername,
@@ -385,9 +385,9 @@ app.post("/signup", (req, res) => {
 //send data to userAccount
 //TRANSFERRED
 app.post("/user", (req, res) => {
-  //const q = "INSERT INTO UserAccount (`username`, `password`, `userLastname`, `userFirstname`, `userGender`, `userEmail`, `userContactNum`, `userAge`, `userBirthday`, `userAddress`, `userDesc`, `accountType`, `dateCreated`, `profileImage`) VALUES (?)"
+  //const q = "INSERT INTO useraccount (`username`, `password`, `userLastname`, `userFirstname`, `userGender`, `userEmail`, `userContactNum`, `userAge`, `userBirthday`, `userAddress`, `userDesc`, `accountType`, `dateCreated`, `profileImage`) VALUES (?)"
   const q =
-    "INSERT INTO UserAccount (`username`, `password`, `userLastname`, `userFirstname`, `userGender`, `userEmail`,`userContactNum`, `userAge`, `userBirthday`, `userAddress`, `accountType`, `dateCreated` ) VALUES (?)";
+    "INSERT INTO useraccount (`username`, `password`, `userLastname`, `userFirstname`, `userGender`, `userEmail`,`userContactNum`, `userAge`, `userBirthday`, `userAddress`, `accountType`, `dateCreated` ) VALUES (?)";
   const values = [
     req.body.username,
     req.body.password,
@@ -759,7 +759,7 @@ app.delete("/commission/:userID/:commissionID", (req, res) => {
 //TRANSFERRED
 app.get("/user/:userID", (req, res) => {
   const userID = req.params.userID; // Get the search term from the query parameter
-  const q = "SELECT * FROM UserAccount WHERE userID = ?";
+  const q = "SELECT * FROM useraccount WHERE userID = ?";
 
   db.query(q, [userID], (err, data) => {
     if (err) {
@@ -774,7 +774,7 @@ app.get("/user/:userID", (req, res) => {
 //TRANSFERRED
 app.put("/update-account/:userID", (req, res) => {
   const userID = req.params.userID;
-  //const q = "UPDATE UserAccount SET `username` = ?, `password` = ?, `userLastname` = ?, `userFirstname` = ?, `userGender` =?, `userEmail` = ?,`userContactNum` =?, `userAge` =?, `userAddress` = ? WHERE userID = ?"
+  //const q = "UPDATE useraccount SET `username` = ?, `password` = ?, `userLastname` = ?, `userFirstname` = ?, `userGender` =?, `userEmail` = ?,`userContactNum` =?, `userAge` =?, `userAddress` = ? WHERE userID = ?"
   const q =
     "UPDATE useraccount set `username` = ?, `password` = ?, `userLastname` = ?, `userFirstname` = ?, `userGender` =?, `userEmail` = ?,`userContactNum` =?, `userAge` =?, `userBirthday` = ?, `userAddress` = ?, `userDesc` = ?, `profileImage` = ? WHERE userID = ?";
   const values = [
@@ -810,7 +810,7 @@ app.put("/update-account/:userID", (req, res) => {
 app.put("/verify-account/:userID", (req, res) => {
   const userID = req.params.userID;
   const q =
-    "UPDATE UserAccount SET accountStatus = 'Verified' WHERE userID = ?";
+    "UPDATE useraccount SET accountStatus = 'Verified' WHERE userID = ?";
 
   db.query(q, [userID], (err, data) => {
     if (err) {
@@ -826,7 +826,7 @@ app.put("/verify-account/:userID", (req, res) => {
 app.put("/deactivate-account/:userID", (req, res) => {
   const userID = req.params.userID;
   const q =
-    "UPDATE UserAccount SET accountStatus = 'Deactivate' WHERE userID = ?";
+    "UPDATE useraccount SET accountStatus = 'Deactivate' WHERE userID = ?";
 
   db.query(q, [userID], (err, data) => {
     if (err) {
@@ -845,7 +845,7 @@ app.get("/sign-in", (req, res) => {
   const username = req.query.username;
   const password = req.query.password;
   const q =
-    "SELECT * FROM UserAccount WHERE (username = ? OR userEmail = ?) AND password = ?";
+    "SELECT * FROM useraccount WHERE (username = ? OR userEmail = ?) AND password = ?";
 
   db.query(q, [username, username, password], (err, data) => {
     if (err) {
