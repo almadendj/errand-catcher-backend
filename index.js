@@ -1201,6 +1201,7 @@ app.get("/complete-count/:userID", (req, res) => {
   });
 });
 
-app.listen(8800, () => {
-  console.log("connected to backend!");
+const PORT = process.env.PORT || 8800; // Use Heroku's PORT or fallback to 8800 for local development
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

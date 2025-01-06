@@ -49,7 +49,7 @@ app.use("/", ExperienceRoutes);
 //   res.json("hello this is the backend");
 // });
 
-const PORT = 8800;
+const PORT = process.env.PORT || 8800; // Use Heroku's PORT or fallback to 8800 for local development
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
