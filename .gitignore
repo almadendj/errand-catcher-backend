@@ -2,4 +2,3 @@ node_modules
 .env
 .aider*
 .idea
-.DS_Store
