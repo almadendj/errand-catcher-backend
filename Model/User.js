@@ -15,7 +15,7 @@ const User = {
   //sign in
   getSignIn: (username, email, callback) => {
     db.query(
-      "SELECT * FROM useraccount WHERE username = ? OR userEmail = ?",
+      "SELECT * FROM UserAccount WHERE username = ? OR userEmail = ?",
       [username, email],
       (error, results) => {
         if (error || results.length === 0) {
@@ -30,7 +30,7 @@ const User = {
   //sign up new user
   //   postSignUp: (userData, callback) => {
 
-  //     db.query("INSERT INTO useraccount (`username`, `password`, `userLastname`, `userFirstname`, `userGender`, `userEmail`,`userContactNum`, `userAge`, `userBirthday`, `userAddress`, `accountType`, `dateCreated` ) VALUES (?)")
+  //     db.query("INSERT INTO UserAccount (`username`, `password`, `userLastname`, `userFirstname`, `userGender`, `userEmail`,`userContactNum`, `userAge`, `userBirthday`, `userAddress`, `accountType`, `dateCreated` ) VALUES (?)")
   //   },
   //update user data
   putUpdateUserById: (id, userData, callback) => {
