@@ -7,7 +7,7 @@ const applyController = {
     Apply.getApplicants(id, (err, applicants) => {
       if (err) {
         console.error("Error fetching Applicants:", err);
-        res.status(500).send("Internal Server Error");
+        res.status(500).send("Internal Server Error", details: err.message );
         return;
       }
       res.json(applicants);
@@ -19,7 +19,7 @@ const applyController = {
     Apply.getApplication(id, (err, application) => {
       if (err) {
         console.error("Error fetching Application:", err);
-        res.status(500).send("Internal Server Error");
+        res.status(500).send("Internal Server Error", details: err.message );
         return;
       }
       res.json(application);
