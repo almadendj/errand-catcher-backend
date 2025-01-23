@@ -114,12 +114,12 @@ const Trans = {
   },
   //get the sum/total of every transaction invoice
   getAmountSum: (cb) => {
-    db.query(`SELECT SUM(total) as 't' FROM INVOICE`, cb);
+    db.query(`SELECT SUM(total) as 't' FROM invoice`, cb);
   },
   // get catcher total earnings
   getAmountSumCat: (id, cb) => {
     db.query(
-      `SELECT SUM(total) as 't' FROM INVOICE WHERE invoiceCatcherID = ?`,
+      `SELECT SUM(total) as 't' FROM invoice WHERE invoiceCatcherID = ?`,
       [id],
       cb
     );
